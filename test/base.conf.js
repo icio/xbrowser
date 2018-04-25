@@ -1,9 +1,3 @@
-const os = require('os');
-const express = require('express');
-
-var testServer;
-const testServerPort = 3000;
-
 exports.config = {
     //
     // ==================
@@ -90,8 +84,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    basePort: testServerPort, // Custom, for overriding the baseUrl later.
-    baseUrl: 'http://' + os.hostname() + ':' + testServerPort,
+    baseUrl: 'http://127.0.0.1/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -166,19 +159,7 @@ exports.config = {
     onPrepare: function (config, capabilities) {
         return Promise.all(this.onPrepares.map(fn => fn(config, capabilities)).filter(Boolean));
     },
-    onPrepares: [function(config, capabilities) {
-        return new Promise(function(resolve, reject) {
-            const app = express();
-            app.use(express.static(__dirname));
-            testServer = app.listen(testServerPort);
-
-            // Wait for the server to come up.
-            testServer.on('listening', resolve);
-            testServer.on('error', function(e) {
-                reject('Failed to launch express: ' + e);
-            });
-        });
-    }],
+    onPrepares: [],
 
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
@@ -198,9 +179,7 @@ exports.config = {
     onComplete: function(exitCode, config, capabilities) {
         return Promise.all(this.onCompletes.map(fn => fn(exitCode, config, capabilities)).filter(Boolean));
     },
-    onCompletes: [function(exitCode, config, capabilities) {
-        testServer.close();
-    }],
+    onCompletes: [],
 
     /**
      * Gets executed before test execution begins. At this point you can access to all global

@@ -5,7 +5,7 @@ const base = require('./base.conf').config;
 exports.config = Object.assign(base, {
     host: '127.0.0.1',
     port: 4723,
-    baseUrl: 'http://127.0.0.1:' + base.basePort,
+    baseUrl: 'http://127.0.0.1:3000',
 
     capabilities: [
         {
@@ -24,6 +24,24 @@ exports.config.onPrepares.push(function (config, capabilities) {
         port: config.port,
         log: __dirname + '/appium.log',
     });
+});
+
+var testServer;
+exports.config.onPrepares.push(function (config, capabilities) {
+    return new Promise(function(resolve, reject) {
+        const app = express();
+        app.use(express.static(__dirname));
+        testServer = app.listen(3000);
+
+        // Wait for the server to come up.
+        testServer.on('listening', resolve);
+        testServer.on('error', function(e) {
+            reject('Failed to launch express: ' + e);
+        });
+    });
+});
+exports.config.onCompletes.push(function(exitCode, config, capabilities) {
+    testServer.close();
 });
 
 function launchAppium(args) {

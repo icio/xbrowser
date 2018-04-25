@@ -16,6 +16,9 @@ exports.config = Object.assign(base, {
     user: user,
     key: key,
 
+    // Picked up by cbt_tunnels.
+    baseUrl: 'http://local',
+
     capabilities: [
         {
             name: 'Ravelin JS Windows 10 Firefox 45',
@@ -32,7 +35,8 @@ exports.config = Object.assign(base, {
             browserName: 'Internet Explorer',
             version: '8',
             platform: 'Windows Vista',
-            screenResolution: '1366x768'
+            screenResolution: '1366x768',
+            record_video: 'true'
         },
     ],
 
@@ -68,7 +72,7 @@ exports.config = Object.assign(base, {
 
 exports.config.onPrepares.push(function(config, capabilities) {
     return new Promise(function(resolve, reject) {
-        cbt.start({username: user, authkey: key}, function(err) {
+        cbt.start({username: user, authkey: key, dir: __dirname}, function(err) {
             if (err) {
                 return reject('Failed to open CBT tunnel: ' + err);
             }

@@ -7,7 +7,7 @@
 
 describe('script tag', function() {
     it('should get a global, synchronous function', function() {
-        browser.url('/pages/scripttag/');
+        browser.url('/pages/scripttag/index.html');
         browser.setValue('#name', 'John');
         browser.click('#update');
         browser.getValue('#output').should.not.equal('');
