@@ -34,3 +34,5 @@ jobs:
 
       - store_test_results:
           path: ~/repo/test/junit
+      - store_artifacts:
+          path: ~/repo/test/shots
