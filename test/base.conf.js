@@ -213,6 +213,29 @@ exports.config = {
         var chai = require('chai');
         global.expect = chai.expect;
         chai.Should();
+
+        // Set up a custom URL helper.
+        browser.addCommand('waitForQueryParam', function(param, value, timeout) {
+            value = encodeURIComponent(value).replace('%20', '+');
+            const targetParam = new RegExp('[&?]' + (param + '=' + value).replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1") + '(&|$)');
+
+            var latest;
+            try {
+                return browser.waitUntil(
+                    function () {
+                        latest = browser.getUrl();
+                        return targetParam.test(latest);
+                    },
+                    timeout || 10000,
+                    'timeout'
+                );
+            } catch (e) {
+                if (e.message == 'timeout') {
+                    throw new Error("Timed out waiting for URL with query param " + param + "=" + value + ". Last URL was " + latest);
+                }
+                throw e;
+            }
+        });
     },
 
     /**
