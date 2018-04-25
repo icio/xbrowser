@@ -167,9 +167,17 @@ exports.config = {
         return Promise.all(this.onPrepares.map(fn => fn(config, capabilities)).filter(Boolean));
     },
     onPrepares: [function(config, capabilities) {
-        const app = express();
-        app.use(express.static(__dirname));
-        testServer = app.listen(testServerPort);
+        return new Promise(function(resolve, reject) {
+            const app = express();
+            app.use(express.static(__dirname));
+            testServer = app.listen(testServerPort);
+
+            // Wait for the server to come up.
+            testServer.on('listening', resolve);
+            testServer.on('error', function(e) {
+                reject('Failed to launch express: ' + e);
+            });
+        });
     }],
 
     /**
