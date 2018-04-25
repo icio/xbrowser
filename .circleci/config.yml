@@ -31,3 +31,6 @@ jobs:
         
       # run tests!
       - run: npm run test-crossbrowser
+
+      - store_test_results:
+          path: ~/repo/test/junit
