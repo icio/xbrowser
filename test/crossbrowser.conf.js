@@ -4,6 +4,10 @@ const cbt = require('cbt_tunnels');
 const user = process.env.CROSSBROWSERTESTING_USER;
 const key = process.env.CROSSBROWSERTESTING_KEY;
 
+if (!user || !key) {
+    throw new Error('Set the CROSSBROWSERTESTING_USER and CROSSBROWSERTESTING_KEY envvars.');
+}
+
 const base = require('./base.conf').config;
 exports.config = Object.assign(base, {
     // Appium desktop defaults.
@@ -14,13 +18,21 @@ exports.config = Object.assign(base, {
 
     capabilities: [
         {
-            name: 'Selenium Test Example',
+            name: 'Ravelin JS Windows 10 Firefox 45',
             build: '1.0',
             browser_api_name: "FF45",
             os_api_name: "Win10",
             browserName: 'firefox',
             record_video: 'false',
             record_network: 'false'
+        },
+        {
+            name: 'Ravelin JS Windows Vista IE8',
+            build: '1.0',
+            browserName: 'Internet Explorer',
+            version: '8',
+            platform: 'Windows Vista',
+            screenResolution: '1366x768'
         },
     ],
 
