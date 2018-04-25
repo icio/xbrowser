@@ -30,6 +30,23 @@ exports.config = Object.assign(base, {
             record_network: 'false'
         },
         {
+            name: 'Ravelin JS Windows 10 IE10',
+            build: '1.0',
+            browserName: 'Internet Explorer',
+            version: '10',
+            platform: 'Windows 7 64-Bit',
+            screenResolution: '1366x768'
+        },
+        {
+            name: 'Ravelin JS Windows 7 IE9',
+            build: '1.0',
+            browserName: 'Internet Explorer',
+            version: '9',
+            platform: 'Windows 7',
+            screenResolution: '1366x768',
+            record_video: 'true'
+        },
+        {
             name: 'Ravelin JS Windows Vista IE8',
             build: '1.0',
             browserName: 'Internet Explorer',
