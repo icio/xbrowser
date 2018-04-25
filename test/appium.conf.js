@@ -5,6 +5,7 @@ const base = require('./base.conf').config;
 exports.config = Object.assign(base, {
     host: '127.0.0.1',
     port: 4723,
+    baseUrl: 'http://127.0.0.1:' + base.basePort,
 
     capabilities: [
         {

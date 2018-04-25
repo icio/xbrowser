@@ -90,6 +90,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
+    basePort: testServerPort, // Custom, for overriding the baseUrl later.
     baseUrl: 'http://' + os.hostname() + ':' + testServerPort,
     //
     // Default timeout for all waitFor* commands.
