@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>XBrowser Library Testing</title>
+</head>
+
+<body>
+    <h1>Greetings.</h1>
+    <form method="get" id="test">
+        Name: <input type="text" name="name" id="name" />
+        Result: <input type="text" name="output" id="output" />
+        <input type="submit" />
+    </form>
+
+    <script src="./lib.js"></script>
+    <script>
+        document.getElementById('test').onsubmit = function() {
+            document.getElementById('output').value = world.greet(document.getElementById('name').value);
+        }
+    </script>
+</body>
+</html>
