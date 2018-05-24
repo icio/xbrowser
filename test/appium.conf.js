@@ -1,5 +1,6 @@
 const proc = require('child_process');
 const waitPort = require('wait-port');
+const express = require('express');
 
 const base = require('./base.conf').config;
 exports.config = Object.assign(base, {
