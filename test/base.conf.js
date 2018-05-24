@@ -159,7 +159,30 @@ exports.config = {
     onPrepare: function (config, capabilities) {
         return Promise.all(this.onPrepares.map(fn => fn(config, capabilities)).filter(Boolean));
     },
-    onPrepares: [],
+    onPrepares: [
+        function webpackTestPage() {
+            return new Promise(function(resolve, reject) {
+                const path = require('path');
+                console.log('Webpack: setting up test/pages/webpack.');
+
+                require('webpack')({
+                    entry: path.resolve(__dirname, 'pages/webpack/index.js'),
+                    output: {
+                        path: path.resolve(__dirname, 'pages/webpack'),
+                        filename: 'bundle.js',
+                    },
+                }, function(err, stats) {
+                    if (err) {
+                        console.error('Webpack: errored.');
+                        reject(err);
+                    } else {
+                        console.log('Webpack: set up.');
+                        resolve(stats);
+                    }
+                });
+            });
+        }
+    ],
 
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you

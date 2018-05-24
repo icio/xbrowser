@@ -1,15 +1,22 @@
-// describe('my awesome website', function () {
-//     it('should do some chai assertions', function () {
-//         browser.url('http://webdriver.io');
-//         browser.getTitle().should.be.equal('WebdriverIO - WebDriver bindings for Node.js');
-//     });
-// });
-
-describe('script tag', function() {
-    it('should get a global, synchronous function', function() {
+describe('ravelinjs', function() {
+    it('can be used with a script tag', function() {
         browser.url('/pages/scripttag/index.html');
-        browser.setValue('#name', 'John');
-        browser.click('#update');
-        browser.getValue('#output').should.not.equal('');
+        suite(browser);
+    });
+
+    it('can be used with requirejs', function() {
+        browser.url('/pages/amd/index.html');
+        suite(browser);
+    });
+
+    it('can be used with webpack', function() {
+        browser.url('/pages/webpack/index.html');
+        suite(browser);
     });
 });
+
+function suite(browser) {
+    browser.setValue('#name', 'John');
+    browser.click('#update');
+    browser.getValue('#output').should.not.equal('');
+}

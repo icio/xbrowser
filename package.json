@@ -30,6 +30,7 @@
     "webdriverio": "^4.12.0"
   },
   "dependencies": {
-    "appium-doctor": "^1.4.3"
+    "appium-doctor": "^1.4.3",
+    "webpack": "^4.8.3"
   }
 }
