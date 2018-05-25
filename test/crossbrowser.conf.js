@@ -54,6 +54,9 @@ exports.config = Object.assign(base, {
             platform: 'Windows Vista',
             screenResolution: '1366x768',
             record_video: 'true'
+
+            // Tests can be disabled for individual browsers:
+            // webpackTestDisabled: true,
         },
     ],
 
