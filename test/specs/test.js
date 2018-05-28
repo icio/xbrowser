@@ -20,7 +20,13 @@ describe('ravelinjs', function() {
 function suite(browser) {
     browser.setValue('#name', 'John');
     browser.click('#update');
-    browser.getValue('#output').should.not.equal('');
+
+    var output = browser.getValue('#output');
+    if (output.indexOf && output.indexOf('ERROR:') === 0) {
+        throw new Error(output);
+    }
+
+    output.should.not.equal('');
 }
 
 function usuallyIt(itDoes) {
