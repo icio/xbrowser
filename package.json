@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm run test-appium",
     "test-appium": "wdio ./test/appium.conf.js",
-    "test-crossbrowser": "wdio ./test/crossbrowser.conf.js"
+    "test-crossbrowser": "wdio ./test/crossbrowser.conf.js",
+    "live-crossbrowser": "sh -u -c 'cbt_tunnels --username $CROSSBROWSERTESTING_USER --authkey $CROSSBROWSERTESTING_KEY --dir ./test/'"
   },
   "repository": {
     "type": "git",
