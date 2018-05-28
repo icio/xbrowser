@@ -932,6 +932,10 @@
     });
   };
 
+  // TODO: Is this always going to be a sufficient amount of entropy? Do we need
+  // to catch insufficnent-entropy exceptions and read a bunch of stuff in?
+  sjcl.random.startCollectors();
+
   RavelinJS.RavelinJS = RavelinJS;
   return new RavelinJS();
 }));
