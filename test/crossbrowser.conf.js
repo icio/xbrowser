@@ -19,15 +19,15 @@ exports.config = Object.assign(base, {
     // Picked up by cbt_tunnels.
     baseUrl: 'http://local',
 
+    maxInstances: parseInt(process.env.WD_PARALLEL, 10) || 1,
     capabilities: [
         {
             name: 'Ravelin JS Windows 10 Firefox 45',
             build: '1.0',
-            browser_api_name: "FF45",
-            os_api_name: "Win10",
-            browserName: 'firefox',
-            record_video: 'false',
-            record_network: 'false'
+            browserName: 'Firefox',
+            version: '45',
+            platform: 'Windows 10',
+            screenResolution: '1366x768'
         },
         {
             name: 'Ravelin JS Windows 10 IE10',
@@ -35,28 +35,18 @@ exports.config = Object.assign(base, {
             browserName: 'Internet Explorer',
             version: '10',
             platform: 'Windows 7 64-Bit',
-            screenResolution: '1366x768'
-        },
-        {
-            name: 'Ravelin JS Windows 7 IE9',
-            build: '1.0',
-            browserName: 'Internet Explorer',
-            version: '9',
-            platform: 'Windows 7',
             screenResolution: '1366x768',
-            record_video: 'true'
         },
         {
-            name: 'Ravelin JS Windows Vista IE8',
+            name: 'Ravelin JS Windows 7 IE8',
             build: '1.0',
             browserName: 'Internet Explorer',
             version: '8',
-            platform: 'Windows Vista',
+            platform: 'Windows 7',
             screenResolution: '1366x768',
-            record_video: 'true'
+            record_video: 'true',
 
-            // Tests can be disabled for individual browsers:
-            // webpackTestDisabled: true,
+            webpackTestDisabled: true,
         },
     ],
 
