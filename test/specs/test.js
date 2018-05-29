@@ -22,7 +22,6 @@ function suite(browser) {
     browser.click('#update');
 
     // Throw a little user entropy in there.
-    browser.moveToObject('input[type=submit]');
     browser.pause(Math.floor(1000 * Math.random()));
     browser.keys(["Tab"]);
 
