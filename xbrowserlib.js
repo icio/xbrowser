@@ -904,19 +904,27 @@
      * data directly to Ravelin. Its execution is asynchronous.
      */
     RavelinJS.prototype.track = function() {
-      if (typeof this.apiKey !== 'string') {
-        throw new Error("No tracking API key set. See RavelinJS.setPublicAPIKey");
-      }
+      this._ravelin('track');
+    }
 
-      target.ravelin.apply(target, arguments);
+    RavelinJS.prototype.trackPage = function() {
+      this._ravelin('trackPage');
     }
 
     RavelinJS.prototype.setPublicAPIKey = function(apiKey) {
+      this._ravelin('setApiKey', this.apiKey = apiKey)
+      this.trackPage();
+    }
+
+    RavelinJS.prototype._ravelin = function() {
+      if (typeof this.apiKey !== 'string') {
+        throw new Error("No tracking API key set. See RavelinJS.setPublicAPIKey");
+      }
       if (!window.ravelin) {
         // https://developer.ravelin.com/v2/#device-tracking.
         (function(r,a,v,e,l,i,n){r[l]=r[l]||function(){(r[l].q=r[l].q||[]).push(arguments)};i=a.createElement(v);i.async=i.defer=1;i.src=e;a.body.appendChild(i)})(window, document, 'script', 'https://cdn.ravelin.net/js/rvn-beta.min.js', 'ravelin');
       }
-      window.ravelin('setApiKey', this.apiKey = apiKey);
+      window.ravelin.apply(window, arguments)
     }
   }
 
