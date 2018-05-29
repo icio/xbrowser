@@ -894,7 +894,7 @@
   }
 
   function RavelinJS(key) {
-    if (key) this.setKey(key);
+    if (key) this.setRSAKey(key);
   }
 
   /**
