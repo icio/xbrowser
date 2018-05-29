@@ -897,6 +897,29 @@
     if (key) this.setRSAKey(key);
   }
 
+  if (typeof window !== 'undefined') {
+    /**
+     * track invokes the Ravelin client-side tracking script. You must have set
+     * the public API key in advance of calling track, so that it can submit the
+     * data directly to Ravelin. Its execution is asynchronous.
+     */
+    RavelinJS.prototype.track = function() {
+      if (typeof this.apiKey !== 'string') {
+        throw new Error("No tracking API key set. See RavelinJS.setPublicAPIKey");
+      }
+
+      target.ravelin.apply(target, arguments);
+    }
+
+    RavelinJS.prototype.setPublicAPIKey = function(apiKey) {
+      if (!window.ravelin) {
+        // https://developer.ravelin.com/v2/#device-tracking.
+        (function(r,a,v,e,l,i,n){r[l]=r[l]||function(){(r[l].q=r[l].q||[]).push(arguments)};i=a.createElement(v);i.async=i.defer=1;i.src=e;a.body.appendChild(i)})(window, document, 'script', 'https://cdn.ravelin.net/js/rvn-beta.min.js', 'ravelin');
+      }
+      window.ravelin('setApiKey', this.apiKey = apiKey);
+    }
+  }
+
   /**
    * setKey configures RavelinJS with the given public key, it the format that
    * Ravelin provides it.
