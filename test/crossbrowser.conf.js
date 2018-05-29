@@ -48,7 +48,10 @@ exports.config = Object.assign(base, {
 
             webpackTestDisabled: true,
         },
-    ],
+    ].filter(
+        // Filter the capabilities by name if there's a BROWSERS envvar.
+        !process.env.BROWSERS ? () => true : (b) => !!~b.name.toLowerCase().indexOf(process.env.BROWSERS.toLowerCase())
+    ),
 
     /**
      * Gets executed after all tests are done. You still have access to all global variables from
