@@ -21,6 +21,11 @@ function suite(browser) {
     browser.setValue('#name', 'John');
     browser.click('#update');
 
+    // Throw a little user entropy in there.
+    browser.moveToObject('input[type=submit]');
+    browser.pause(Math.floor(1000 * Math.random()));
+    browser.keys(["Tab"]);
+
     var output = browser.getValue('#output');
     if (output.indexOf && output.indexOf('ERROR:') === 0) {
         throw new Error(output);
