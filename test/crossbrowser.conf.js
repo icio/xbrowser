@@ -82,10 +82,12 @@ exports.config = Object.assign(base, {
 
 exports.config.onPrepares.push(function(config, capabilities) {
     return new Promise(function(resolve, reject) {
+        console.log('Crossbrowsertesting: Opening tunnel.');
         cbt.start({username: user, authkey: key, dir: __dirname}, function(err) {
             if (err) {
                 return reject('Failed to open CBT tunnel: ' + err);
             }
+            console.log('Crossbrowsertesting: Tunnel open.');
             resolve();
         });
     });
