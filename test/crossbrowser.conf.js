@@ -44,13 +44,13 @@ exports.config = Object.assign(base, {
             platform: 'Windows 8',
         },
         // Safari.
-        {
-            build: 'ravelinjs 1.0',
-            name: 'osx safari11',
-            browserName: 'Safari',
-            version: '11',
-            platform: 'Mac OSX 10.13',
-        },
+        // {
+        //     build: 'ravelinjs 1.0',
+        //     name: 'osx safari11',
+        //     browserName: 'Safari',
+        //     version: '11',
+        //     platform: 'Mac OSX 10.13',
+        // },
         {
             build: 'ravelinjs 1.0',
             name: 'osx safari10',
