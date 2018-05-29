@@ -124,17 +124,17 @@ exports.config = Object.assign(base, {
             platform: 'Windows 7 64-Bit',
             screenResolution: '1366x768',
         },
-        {
-            build: 'ravelinjs 1.0',
-            name: 'win7 ie8',
-            browserName: 'Internet Explorer',
-            version: '8',
-            platform: 'Windows 7',
-            screenResolution: '1366x768',
-            record_video: 'true',
+        // {
+        //     build: 'ravelinjs 1.0',
+        //     name: 'win7 ie8',
+        //     browserName: 'Internet Explorer',
+        //     version: '8',
+        //     platform: 'Windows 7',
+        //     screenResolution: '1366x768',
+        //     record_video: 'true',
 
-            webpackTestDisabled: true,
-        },
+        //     webpackTestDisabled: true,
+        // },
     ].filter(
         // Filter the capabilities by name if there's a BROWSERS envvar.
         !process.env.BROWSERS ? () => true : (b) => !!~b.name.toLowerCase().indexOf(process.env.BROWSERS.toLowerCase())
