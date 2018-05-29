@@ -21,25 +21,112 @@ exports.config = Object.assign(base, {
 
     maxInstances: parseInt(process.env.WD_PARALLEL, 10) || 1,
     capabilities: [
+        // Chrome.
         {
-            name: 'Ravelin JS Windows 10 Firefox 45',
-            build: '1.0',
+            build: 'ravelinjs 1.0',
+            name: 'win10 chromeLatest',
+            browserName: 'Chrome',
+            version: 'latest',
+            platform: 'Windows 10',
+        },
+        {
+            build: 'ravelinjs 1.0',
+            name: 'osx chromeLatest',
+            browserName: 'Chrome',
+            version: 'latest',
+            platform: 'Mac OSX 10.12',
+        },
+        {
+            build: 'ravelinjs 1.0',
+            name: 'win8 chrome18',
+            browserName: 'Chrome',
+            version: '18',
+            platform: 'Windows 8',
+        },
+        // Safari.
+        {
+            build: 'ravelinjs 1.0',
+            name: 'osx safari11',
+            browserName: 'Safari',
+            version: '11',
+            platform: 'Mac OSX 10.13',
+        },
+        {
+            build: 'ravelinjs 1.0',
+            name: 'osx safari10',
+            browserName: 'Safari',
+            version: '10',
+            platform: 'Mac OSX 10.12',
+        },
+        {
+            build: 'ravelinjs 1.0',
+            name: 'osx safari6',
+            browserName: 'Safari',
+            version: '6.2',
+            platform: 'Mac OSX 10.8',
+        },
+        // Firefox.
+        {
+            build: 'ravelinjs 1.0',
+            name: 'osx ffLatest',
+            browserName: 'Firefox',
+            version: 'latest',
+            platform: 'Mac OSX 10.13',
+            screenResolution: '1366x768'
+        },
+        {
+            build: 'ravelinjs 1.0',
+            name: 'win10 ffLatest',
+            browserName: 'Firefox',
+            version: 'latest',
+            platform: 'Windows 10',
+            screenResolution: '1366x768'
+        },
+        {
+            build: 'ravelinjs 1.0',
+            name: 'win10 ff45',
             browserName: 'Firefox',
             version: '45',
             platform: 'Windows 10',
             screenResolution: '1366x768'
         },
+        // Edge.
         {
-            name: 'Ravelin JS Windows 10 IE10',
-            build: '1.0',
+            build: 'ravelinjs 1.0',
+            name: 'win10 edge14',
+            browserName: 'MicrosoftEdge',
+            version: '14',
+            platform: 'Windows 10',
+            screenResolution: '1366x768',
+        },
+        // Internet Explorer.
+        {
+            build: 'ravelinjs 1.0',
+            name: 'win10 ie11',
+            browserName: 'Internet Explorer',
+            version: '11',
+            platform: 'Windows 10',
+            screenResolution: '1366x768',
+        },
+        {
+            build: 'ravelinjs 1.0',
+            name: 'win8 ie10',
             browserName: 'Internet Explorer',
             version: '10',
+            platform: 'Windows 8',
+            screenResolution: '1366x768',
+        },
+        {
+            build: 'ravelinjs 1.0',
+            name: 'win7 ie9',
+            browserName: 'Internet Explorer',
+            version: '9',
             platform: 'Windows 7 64-Bit',
             screenResolution: '1366x768',
         },
         {
-            name: 'Ravelin JS Windows 7 IE8',
-            build: '1.0',
+            build: 'ravelinjs 1.0',
+            name: 'win7 ie8',
             browserName: 'Internet Explorer',
             version: '8',
             platform: 'Windows 7',
