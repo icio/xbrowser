@@ -4,7 +4,7 @@
   "description": "Some browser things.",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test-appium",
+    "test": "mocha -C test/test.js",
     "test-appium": "wdio ./test/appium.conf.js",
     "test-crossbrowser": "wdio ./test/crossbrowser.conf.js",
     "live-crossbrowser": "sh -u -c 'cbt_tunnels --username $CROSSBROWSERTESTING_USER --authkey $CROSSBROWSERTESTING_KEY --dir ./test/'"
