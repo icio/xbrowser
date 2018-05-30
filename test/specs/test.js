@@ -18,15 +18,19 @@ describe('ravelinjs', function() {
 });
 
 function suite(browser) {
+    // Do the form.
     browser.setValue('#name', 'John');
+    browser.setValue('#number', '4111 1111 1111 1111');
+    browser.selectByValue('#month', '4')
+    browser.setValue('#year', '2019');
     browser.click('#update');
 
-    var output = browser.getValue('#output');
-    if (output.indexOf && output.indexOf('ERROR:') === 0) {
-        throw new Error(output);
-    }
+    // Check there was no error.
+    var error = browser.getText('#output-error');
+    if (error) throw new Error(error);
 
-    output.should.not.equal('');
+    // Check the result looked valid.
+    browser.getText('#output').should.not.be.empty;
 }
 
 function usuallyIt(itDoes) {
