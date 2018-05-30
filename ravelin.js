@@ -934,12 +934,12 @@
    */
   RavelinJS.prototype.setRSAKey = function(rawPubKey) {
     if (typeof rawPubKey !== "string") {
-      throw new Error("Invalid value provided to RavelinJS.setKey");
+      throw new Error("Invalid value provided to RavelinJS.setRSAKey");
     }
 
     var split = rawPubKey.split("|");
     if (split.length != 2) {
-      throw new Error("Invalid value provided to RavelinJS.setKey");
+      throw new Error("Invalid value provided to RavelinJS.setRSAKey");
     }
 
     this.rsaKey = new RSAKey();
@@ -949,6 +949,42 @@
   RavelinJS.prototype.encrypt = function(details) {
     if (!this.rsaKey) {
       throw new Error("RavelinJS Key has not been set");
+    }
+
+    if (details.pan) {
+      details.pan = details.pan.toString().replace(/[^0-9]/g, '');
+    }
+    if (!details.pan || details.pan.length < 13) {
+      throw new Error("RavelinJS validation: pan should have at least 13 digits");
+    }
+
+    if (typeof details.month == 'string') {
+      details.month = parseInt(details.month, 10);
+    }
+    if (!(details.month > 0 && details.month < 12)) {
+      throw new Error("RavelinJS validation: month should be in the range 1-12");
+    }
+
+    if (typeof details.year === 'string') {
+      details.year = parseInt(details.year, 10);
+    }
+    if (details.year > 0 && details.year < 100) {
+      details.year += 2000;
+    }
+    if (!(details.year > 2000)) {
+      throw new Error("RavelinJS validation: year should be in the 21st century");
+    }
+
+    for (prop in details) {
+      if (!details.hasOwnProperty(prop)) continue;
+      switch (prop) {
+        case "pan":
+        case "year":
+        case "month":
+        case "nameOnCard":
+          continue;
+      }
+      throw new Error("RavelinJS validation: encrypt only allows properties pan, year, month, nameOnCard");
     }
 
     // TODO: Validate details.
